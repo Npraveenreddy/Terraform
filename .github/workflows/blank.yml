@@ -36,8 +36,11 @@ jobs:
        # Runs a set of commands using the runners shell
       - name: Terraform Installation
         run: |
-          wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-          sudo apt update -y && sudo apt install terraform -y
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt update -y
+          sudo apt install terraform -y
+
 
       # Runs a set of commands using the runners shell
       - name: Run Terraform
