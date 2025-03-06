@@ -33,9 +33,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+       # Runs a set of commands using the runners shell
+      - name: Terraform Installation
+        run: |
+          wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          sudo apt update -y && sudo apt install terraform -y
+
       # Runs a set of commands using the runners shell
       - name: Run Terraform
         run: |
           terraform init
           terraform plan
-          terraform apply -auto-approve
