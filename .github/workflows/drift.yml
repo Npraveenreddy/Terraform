@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
   # Run automatically every 5 minutes
-  schedule:
-    - cron: "*/5 * * * *"
+  # schedule:
+  #   - cron: "*/5 * * * *"
 
 jobs:
   build:
